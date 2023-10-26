@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+  </head>
+  <body>
+    <header class="bg-dark">
+      <div class="container">
+        <div class="row p-4">
+          <div class="col">
+            <nav>
+              <a class="btn btn-outline-light" href="index.html">Home</a>
+              <a class="btn btn-outline-light" href="mortgage.html">Mortgage Calculator</a>
+              <a class="btn btn-outline-light" href="future-value.html">Future Value Calculator</a>
+              <a class="btn btn-outline-light" href="annuity.html">Annuity Calculator</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <body class="bg-dark-subtle">
+      <div class="container">
+        <div class="row p-4">
+          <div class="col">
+            <h1 class="mb-4">Present Value of Annuity Calculator</h1>
+            <p>Monthly Payout: <input type="text" id="monthlyAmountField" /></p>
+            <p>Interest Rate (as Decimal): <input type="text" id="interestAsDecimalField" /></p>
+            <p>Years: <input type="text" id="lengthInYearsField" /></p>
+
+            <p>
+              <input
+                class="btn btn-dark"
+                id="calculatePresentValueOfAnnuityBtn"
+                type="button"
+                value="Calculate Present Value of Annuity"
+              />
+            </p>
+
+            <p>Present Value of Annuity: <input type="text" id="presentValueField" readonly /></p>
+
+            <p class="text-danger" id="messagePara"></p>
+          </div>
+        </div>
+      </div>
+    </body>
+    <footer class="bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <!---->
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="scripts/scripts.js"></script>
+  </body>
+</html>
