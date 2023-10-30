@@ -28,8 +28,8 @@
               <br />
             </div>
           </div>
-          <div class="row">
-            <form id="overnight-cost-estimator" action="">
+          <form id="overnight-cost-estimator">
+            <div class="row">
               <table>
                 <tr>
                   <td>
@@ -54,7 +54,7 @@
                     <label for="check-in-date-input">Check-in Date: </label>
                   </td>
                   <td>
-                    <input type="date" />
+                    <input type="date" id="check-in-date-input" />
                   </td>
                 </tr>
 
@@ -67,7 +67,9 @@
                   </td>
                 </tr>
               </table>
-              <br />
+            </div>
+            <br />
+            <div class="row">
               <div class="radio-button-group">
                 <p>Select Room Type:</p>
 
@@ -80,9 +82,10 @@
                 <input type="radio" name="room-type-radio" id="two-bedroom-suite-radio" />
                 <label for="two-bedroom-suite-radio">2-Bedroom Suit</label>
               </div>
-              <br />
+            </div>
+            <br />
 
-
+            <div class="row">
               <table>
                 <tr>
                   <td>
@@ -101,7 +104,9 @@
                   </td>
                 </tr>
               </table>
-              <br />
+            </div>
+            <br />
+            <div class="row">
               <div class="radio-button-group">
                 <p>Discounts</p>
 
@@ -117,8 +122,8 @@
                 <input type="radio" name="discount-radio" id="military-radio" />
                 <label for="military-radio">Military</label>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </fieldset>
       </div>
     </main>
