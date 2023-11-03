@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"> -->
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body class="bg-dark">
     <header class="bg-dark-subtle border-bottom border-dark">
-      <div class="container">
+<div class="container">
         <h2 class="text-dark-emphasis">Visitor's Bureau</h2>
         <nav class="navbar">
           <a class="btn btn-outline-dark" href="index.html">Home</a>
@@ -17,27 +19,26 @@
           <a class="btn btn-outline-dark" href="hikingPage.html">Hiking</a>
           <a class="btn btn-outline-dark" href="aboutTheArea.html">About</a>
         </nav>
-      </div>
+  </div>
     </header>
     <main>
       <div class="container">
         <fieldset class="bg-dark-subtle px-5 py-4">
           <form>
             <h1>Activities</h1>
-            <label for="category-select">Category of Menu Items</label>
+            <label for="category-select">Category</label>
             <select id="category-select">
               <option value="">Select Category...</option>
-              <option value="drinks">Drinks</option>
-              <option value="entrees">Entrees</option>
-              <option value="desserts">Desserts</option>
             </select>
-            <label for="item-select">Menu Items</label>
-            <select id="item-select">
-              <option value="">Select Item...</option>
+            <label for="name-select">Activities</label>
+            <select id="name-select">
+              <option value="">Select Activity...</option>
             </select>
+            <p id="display-paragraph"></p>
           </form>
         </fieldset>
       </div>
     </main>
+    <script src="ActivitiesPage/activities.js"></script>
   </body>
 </html>

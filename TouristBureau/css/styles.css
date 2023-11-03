@@ -1,6 +1,7 @@
 fieldset {
-    max-width: 25rem;
+    max-width: 30rem;
     margin: auto;
+    margin-top: 2rem;
   }
   form {
     display: flex;
