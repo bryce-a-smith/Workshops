@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
     <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body class="bg-dark">
     <header class="bg-dark-subtle border-bottom border-dark">
@@ -22,9 +22,33 @@
     <main>
       <div class="container">
         <fieldset class="bg-dark-subtle px-5 py-4">
-
+          <form>
+            <h1>Hiking</h1>
+            <div class="row">
+              <div class="col form-col">
+                <label for="trails-select">Trails</label>
+                <select id="trails-select">
+                  <option value="">Select...</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-col p-2">
+                <img id="scenic-img" src="" alt="">
+              </div>
+              <div class="col-md-6 form-col p-2">
+                <img id="trail-map-img" src="" alt="">
+              </div>
+            </div>
+            <div class="row">
+                <div class="col form-col p-2">
+                    <p id="display-paragraph"></p>
+                </div>
+            </div>
+          </form>
         </fieldset>
       </div>
     </main>
+    <script src="HikingPage/hiking.js"></script>
   </body>
 </html>

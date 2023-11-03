@@ -29,3 +29,48 @@ let hikes = [
         difficulty: 2 
      },
  ];
+
+ function init() {
+//get html elements
+const trailsSelect = document.getElementById("trails-select");
+const scenicImg = document.getElementById("scenic-img");
+const trailMapImg = document.getElementById("trail-map-img");
+const displayParagraph = document.getElementById("display-paragraph");
+
+//functions
+function loadTrailsSelect() {
+   for(const trail of hikes) {
+      let option = new Option(trail.name, trail.id);
+      trailsSelect.appendChild(option);
+   }
+}
+
+function getTrailById (id) {
+   for(const trail of hikes) {
+      if(trail.id == id) {
+         return trail;
+      }
+   }
+}
+
+function displayInfo() {
+   const selectedTrail = getTrailById(trailsSelect.value);
+   
+   scenicImg.src = "HikingPage/" + selectedTrail.scenicImage;
+   trailMapImg.src = "HikingPage/" +selectedTrail.trailMapImage;
+
+   displayParagraph.innerText = `${selectedTrail.name}\n\n${selectedTrail.length}; Difficulty level ${selectedTrail.difficulty}\n\n${selectedTrail.description}`;
+
+}
+
+//call functions
+loadTrailsSelect();
+
+
+//event-listeners
+trailsSelect.onchange = displayInfo;
+
+
+ }
+
+ window.onload = init;

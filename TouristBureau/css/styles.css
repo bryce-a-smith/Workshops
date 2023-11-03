@@ -1,13 +1,16 @@
 fieldset {
-    max-width: 30rem;
     margin: auto;
     margin-top: 2rem;
+    margin-bottom: 2rem;
   }
   form {
     display: flex;
     flex-direction: column;
-    max-width: 18rem;
     padding: 0.5rem;
+  }
+  .form-col {
+    display: flex;
+    flex-direction: column;
   }
   select {
     padding: 0.25rem;
