@@ -120,36 +120,6 @@ function init() {
   const displayParagraph = document.getElementById("display-paragraph");
   const buyTicketsButton = document.getElementById("buy-tickets-button");
 
-  let adventuresArray = [];
-  let artsAndCraftsArray = [];
-  let museumsArray = [];
-  let wineTastingsArray = [];
-  let otherArray = [];
-  //Adventures", "Arts & Crafts", "Museums", "Wine Tastings", "Other"];
-
-  //write functions
-
-  function sortCategories() {
-    for (const activity of activities) {
-      switch (activity.category) {
-        case categories[0]:
-          adventuresArray.push(activity);
-          break;
-        case categories[1]:
-          artsAndCraftsArray.push(activity);
-          break;
-        case categories[2]:
-          museumsArray.push(activity);
-          break;
-        case categories[3]:
-          wineTastingsArray.push(activity);
-          break;
-        case categories[4]:
-          otherArray.push(activity);
-          break;
-      }
-    }
-  }
 
   function loadCategorySelect() {
     for (const category of categories) {
@@ -158,48 +128,33 @@ function init() {
     }
   }
 
+
   function loadNameSelect(category) {
-    let activityArray = getActivityArray(category);
-
     nameSelect.options.length = 0;
-    nameSelect.size = activityArray.length;
 
-    for (const activity of activityArray) {
-      let option = new Option(activity.name, activity.id);
-      nameSelect.appendChild(option);
+    let selectOption = new Option("Select...", "")
+
+    nameSelect.appendChild(selectOption);
+
+    for (const activity of activities) {
+      if (activity.category == category) {
+        let option = new Option(activity.name, activity.id);
+        nameSelect.appendChild(option);
+      }
     }
   }
 
-  function getActivityArray(category) {
-    switch (category) {
-      case categories[0]:
-        return adventuresArray;
-        break;
-      case categories[1]:
-        return artsAndCraftsArray;
-        break;
-      case categories[2]:
-        return museumsArray;
-        break;
-      case categories[3]:
-        return wineTastingsArray;
-        break;
-      case categories[4]:
-        return otherArray;
-        break;
-    }
-  }
 
   function onSelectionChanged() {
     displayParagraph.innerText = "";
+    buyTicketsButton.style.display = "none";
     if (categorySelect.value == "") {
       nameSelect.options.length = 0;
       nameSelect.size = 0;
-      let option = new Option("Select name...");
-      nameSelect.appendChild(option);
+      let selectOption = new Option("Select Activity...");
+      nameSelect.appendChild(selectOption);
     } else {
       loadNameSelect(categorySelect.value);
-      //loadActivitiesSelect(categorySelect.value);
     }
   }
 
@@ -229,7 +184,6 @@ function init() {
   }
 
   loadCategorySelect();
-  sortCategories();
 
   //wire-up functions
   categorySelect.onchange = onSelectionChanged;
