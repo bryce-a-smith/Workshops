@@ -118,6 +118,7 @@ function init() {
   const categorySelect = document.getElementById("category-select");
   const nameSelect = document.getElementById("name-select");
   const displayParagraph = document.getElementById("display-paragraph");
+  const buyTicketsButton = document.getElementById("buy-tickets-button");
 
   let adventuresArray = [];
   let artsAndCraftsArray = [];
@@ -163,30 +164,29 @@ function init() {
     nameSelect.options.length = 0;
     nameSelect.size = activityArray.length;
 
-    for(const activity of activityArray) {
-        let option = new Option(activity.name, activity.id);
-        nameSelect.appendChild(option);
+    for (const activity of activityArray) {
+      let option = new Option(activity.name, activity.id);
+      nameSelect.appendChild(option);
     }
-
   }
 
-  function getActivityArray(category){
-    switch(category) {
-        case categories[0]:
-            return adventuresArray;
-            break;
-          case categories[1]:
-            return artsAndCraftsArray;
-            break;
-          case categories[2]:
-            return museumsArray;
-            break;
-          case categories[3]:
-            return wineTastingsArray;
-            break;
-          case categories[4]:
-            return otherArray;
-            break;
+  function getActivityArray(category) {
+    switch (category) {
+      case categories[0]:
+        return adventuresArray;
+        break;
+      case categories[1]:
+        return artsAndCraftsArray;
+        break;
+      case categories[2]:
+        return museumsArray;
+        break;
+      case categories[3]:
+        return wineTastingsArray;
+        break;
+      case categories[4]:
+        return otherArray;
+        break;
     }
   }
 
@@ -204,26 +204,28 @@ function init() {
   }
 
   function getActivityByName(id) {
-    for(const activity of activities) {
-        if(activity.id == id) {
-            return activity;
-        }
+    for (const activity of activities) {
+      if (activity.id == id) {
+        return activity;
+      }
     }
   }
-
-// //   category: "Wine Tastings",
-// id: "WT-102",
-// name: "Lone Oak Winery",
-// description:
-//   "We are a family and friend centered winery that thrives to make each of our guests feel right at home. With a growing wine list of the finest local wines, we offer tours and an incredible experience. We are open for to-go, curbside, and delivery.",
-// location: "121 Burleson Court",
-// price: 0.0,
 
   function displayInfo() {
     displayParagraph.innerText = "";
     let selectedActivity = getActivityByName(nameSelect.value);
 
-    displayParagraph.innerText = `${selectedActivity.name} (${selectedActivity.code}) who play in ${selectedActivity.plays}`;
+    displayParagraph.innerText = `${selectedActivity.name}\n\n${selectedActivity.description}\n\n${
+      selectedActivity.location
+    }\n\nTickets: $${selectedActivity.price.toFixed(2)}/ea`;
+  }
+
+  function toggleButton() {
+    if (nameSelect.value == "") {
+      buyTicketsButton.style.display = "none";
+    } else {
+      buyTicketsButton.style.display = "block";
+    }
   }
 
   loadCategorySelect();
@@ -231,7 +233,9 @@ function init() {
 
   //wire-up functions
   categorySelect.onchange = onSelectionChanged;
-  nameSelect.onchange = displayInfo;
+  //nameSelect.onchange = displayInfo;
+  nameSelect.addEventListener("change", displayInfo);
+  nameSelect.addEventListener("change", toggleButton);
 }
 
 window.onload = init;
