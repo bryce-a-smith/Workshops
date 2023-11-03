@@ -6,7 +6,7 @@ fieldset {
   form {
     display: flex;
     flex-direction: column;
-    max-width: 15rem;
+    max-width: 18rem;
     padding: 0.5rem;
   }
   select {
@@ -15,4 +15,10 @@ fieldset {
   }
   label {
     margin: .25rem 0 .25rem 0;
+  }
+  #display-paragraph {
+    margin-top: 2rem;
+    /* border: black;
+    border: solid;
+    padding: .5rem; */
   }
