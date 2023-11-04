@@ -1,27 +1,32 @@
 fieldset {
-    margin: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-  }
-  .form-col {
-    display: flex;
-    flex-direction: column;
-  }
-  select {
-    padding: 0.25rem;
-    margin: .25rem 0 .25rem 0;
-  }
-  label {
-    margin: .25rem 0 .25rem 0;
-  }
-  #display-paragraph {
-    margin-top: 2rem;
-    /* border: black;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+.form-col {
+  display: flex;
+  flex-direction: column;
+}
+select {
+  padding: 0.25rem;
+  margin: 0.25rem 0 0.25rem 0;
+}
+label {
+  margin: 0.25rem 0 0.25rem 0;
+}
+#display-paragraph {
+  margin-top: 2rem;
+  /* border: black;
     border: solid;
     padding: .5rem; */
-  }
+}
+p {
+  font-weight: bolder;
+  padding: .25rem;
+  margin: .25rem
+}

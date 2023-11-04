@@ -121,9 +121,59 @@ function init() {
   const buyTicketsForm = document.getElementById("buy-tickets-form");
   const numberOfTicketsSelect = document.getElementById("number-of-tickets-select");
   const priceOutput = document.getElementById("price-output");
+  const nameInput = document.getElementById("name-input");
+  const emailInput = document.getElementById("email-input");
+  const cardNumberInput = document.getElementById("card-number-input");
+  const buyTicketsButton = document.getElementById("buy-tickets-button");
+  const checkOutParagraph = document.getElementById("check-out-paragraph");
 
 
   let currentTicketPrice = 0;
+
+  function clearFormInput() {
+    numberOfTicketsSelect.value = 1;
+    priceOutput.value = "";
+
+    nameInput.value = "";
+    emailInput.value = "";
+    cardNumberInput.value = "";
+  }
+
+  function clearCheckOutMessage() {
+    checkOutParagraph.innerText = "";
+  }
+
+  function toggleTicketForm() {
+    if (nameSelect.value == "") {
+      buyTicketsForm.style.display = "none";
+      checkOutParagraph.innerText = "";
+    } else {
+      buyTicketsForm.style.display = "block";
+    }
+  }
+
+  function hideTicketForm() {
+    buyTicketsForm.style.display = "none";
+  }
+
+  function clearInfo() {
+    displayParagraph.innerText = "";
+  }
+
+  function clearAll() {
+    clearInfo();
+    clearFormInput();
+    hideTicketForm();
+    clearCheckOutMessage();
+  }
+
+  function resetNameSelect() {
+    nameSelect.options.length = 0;
+
+    let selectOption = new Option("Select Activity...", "");
+
+    nameSelect.appendChild(selectOption);
+  }
 
   function loadCategorySelect() {
     for (const category of categories) {
@@ -133,11 +183,7 @@ function init() {
   }
 
   function loadNameSelect(category) {
-    nameSelect.options.length = 0;
-
-    let selectOption = new Option("Select...", "");
-
-    nameSelect.appendChild(selectOption);
+    resetNameSelect();
 
     for (const activity of activities) {
       if (activity.category == category) {
@@ -148,13 +194,10 @@ function init() {
   }
 
   function onSelectionChanged() {
-    displayParagraph.innerText = "";
-    buyTicketsForm.style.display = "none";
+    clearAll();
+
     if (categorySelect.value == "") {
-      nameSelect.options.length = 0;
-      nameSelect.size = 0;
-      let selectOption = new Option("Select Activity...");
-      nameSelect.appendChild(selectOption);
+      resetNameSelect();
     } else {
       loadNameSelect(categorySelect.value);
     }
@@ -169,20 +212,18 @@ function init() {
   }
 
   function displayInfo() {
-    displayParagraph.innerText = "";
+    clearAll();
+
     let selectedActivity = getActivityByName(nameSelect.value);
     currentTicketPrice = selectedActivity.price;
+
     displayParagraph.innerText = `${selectedActivity.name}\n\n${selectedActivity.description}\n\n${selectedActivity.location}`;
     if (currentTicketPrice != 0) {
       displayParagraph.innerText += `\n\nTickets: $${selectedActivity.price.toFixed(2)}/ea`;
-    }
-  }
-
-  function toggleTicketForm() {
-    if (nameSelect.value == "") {
-      buyTicketsForm.style.display = "none";
+      toggleTicketForm();
     } else {
-      buyTicketsForm.style.display = "block";
+      displayParagraph.innerText += `\n\nFree`;
+      hideTicketForm();
     }
   }
 
@@ -191,13 +232,26 @@ function init() {
     priceOutput.value = `$${(numOfTickets * currentTicketPrice).toFixed(2)}`;
   }
 
+  function buyTickets() {
+    clearAll();
+
+    //print message
+    checkOutParagraph.innerText = `Thank you ${
+      nameInput.value
+    },\nYour credit card has been charged $${currentTicketPrice.toFixed(2)} for ${
+      numberOfTicketsSelect.value
+    } ticket(s) to
+    ${getActivityByName(nameSelect.value).name}. A confirmation email has been sent to ${emailInput.value}.`;
+  }
+
   loadCategorySelect();
 
   //wire-up functions
   categorySelect.onchange = onSelectionChanged;
   nameSelect.addEventListener("change", displayInfo);
-  nameSelect.addEventListener("change", toggleTicketForm);
+
   numberOfTicketsSelect.addEventListener("change", calculatePrice);
+  buyTicketsButton.addEventListener("click", buyTickets);
 }
 
 window.onload = init;

@@ -42,7 +42,7 @@
               </div>
             </div>
           </form>
-          <form id="buy-tickets-form" style="display: none;">
+          <form id="buy-tickets-form" style="display: none">
             <div class="row">
               <div class="col-9 form-col">
                 <label for="name-input">Name: </label>
@@ -53,6 +53,8 @@
 
                 <label for="card-number-input">Credit Card: </label>
                 <input id="card-number-input" type="text" />
+
+                <button id="buy-tickets-button" class="btn-dark" type="button">Buy Tickets</button>
               </div>
               <div class="col-3 form-col">
                 <label for="number-of-tickets-select">Tickets</label>
@@ -64,11 +66,17 @@
                   <option value="5">5</option>
                   <option value="6">6</option>
                 </select>
+
                 <label for="price-output">Total: </label>
-                <input id="price-output" type="text" readonly>
+                <input id="price-output" type="text" readonly />
               </div>
             </div>
           </form>
+          <div class="row">
+            <div class="col form-col">
+              <p id="check-out-paragraph"></p>
+            </div>
+          </div>
         </fieldset>
       </div>
     </main>
