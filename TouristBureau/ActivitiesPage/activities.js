@@ -118,8 +118,12 @@ function init() {
   const categorySelect = document.getElementById("category-select");
   const nameSelect = document.getElementById("name-select");
   const displayParagraph = document.getElementById("display-paragraph");
-  const buyTicketsButton = document.getElementById("buy-tickets-button");
+  const buyTicketsForm = document.getElementById("buy-tickets-form");
+  const numberOfTicketsSelect = document.getElementById("number-of-tickets-select");
+  const priceOutput = document.getElementById("price-output");
 
+
+  let currentTicketPrice = 0;
 
   function loadCategorySelect() {
     for (const category of categories) {
@@ -128,11 +132,10 @@ function init() {
     }
   }
 
-
   function loadNameSelect(category) {
     nameSelect.options.length = 0;
 
-    let selectOption = new Option("Select...", "")
+    let selectOption = new Option("Select...", "");
 
     nameSelect.appendChild(selectOption);
 
@@ -144,10 +147,9 @@ function init() {
     }
   }
 
-
   function onSelectionChanged() {
     displayParagraph.innerText = "";
-    buyTicketsButton.style.display = "none";
+    buyTicketsForm.style.display = "none";
     if (categorySelect.value == "") {
       nameSelect.options.length = 0;
       nameSelect.size = 0;
@@ -169,27 +171,33 @@ function init() {
   function displayInfo() {
     displayParagraph.innerText = "";
     let selectedActivity = getActivityByName(nameSelect.value);
-
-    displayParagraph.innerText = `${selectedActivity.name}\n\n${selectedActivity.description}\n\n${
-      selectedActivity.location
-    }\n\nTickets: $${selectedActivity.price.toFixed(2)}/ea`;
+    currentTicketPrice = selectedActivity.price;
+    displayParagraph.innerText = `${selectedActivity.name}\n\n${selectedActivity.description}\n\n${selectedActivity.location}`;
+    if (currentTicketPrice != 0) {
+      displayParagraph.innerText += `\n\nTickets: $${selectedActivity.price.toFixed(2)}/ea`;
+    }
   }
 
-  function toggleButton() {
+  function toggleTicketForm() {
     if (nameSelect.value == "") {
-      buyTicketsButton.style.display = "none";
+      buyTicketsForm.style.display = "none";
     } else {
-      buyTicketsButton.style.display = "block";
+      buyTicketsForm.style.display = "block";
     }
+  }
+
+  function calculatePrice() {
+    let numOfTickets = Number(numberOfTicketsSelect.value);
+    priceOutput.value = `$${(numOfTickets * currentTicketPrice).toFixed(2)}`;
   }
 
   loadCategorySelect();
 
   //wire-up functions
   categorySelect.onchange = onSelectionChanged;
-  //nameSelect.onchange = displayInfo;
   nameSelect.addEventListener("change", displayInfo);
-  nameSelect.addEventListener("change", toggleButton);
+  nameSelect.addEventListener("change", toggleTicketForm);
+  numberOfTicketsSelect.addEventListener("change", calculatePrice);
 }
 
 window.onload = init;
