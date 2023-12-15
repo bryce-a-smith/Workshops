@@ -10,6 +10,7 @@ function init() {
   //Get HTML elements
   // const usersSelect = document.querySelector("#users-select");
   const usersSelect = $("#users-select");
+  const displayTodosDiv = $("#display-todos-div");
 
   //Functions
   async function loadUsersSelect() {
@@ -28,43 +29,53 @@ function init() {
     usersSelect.appendChild(userOption);
   }
 
+  function clearTodosDiv() {
+    while(displayTodosDiv.firstChild) {
+        displayTodosDiv.removeChild(displayTodosDiv.firstChild);
+      }
+  }
+
   async function displayTodos() {
+    clearTodosDiv();
+
     fetch(`http://localhost:8083/api/todos/byuser/${usersSelect.value}`)
       .then((response) => response.json())
       .then((data) => {
         for (let todo of data) {
-            console.log(todo);
-          userOptionSelect(todo);
+            // console.log(todo);
+          buildAndDisplayCard(todo);
         }
       });
   }
 
-//   async function buildAndDisplayCard(todo) {
-//     let currentCard = document.createElement("div");
+  function buildAndDisplayCard(todo) {
+    let currentCard = document.createElement("div");
 
-//     let currentH3 = document.createElement("h3");
-//     let currentH5 = document.createElement("h5");
-//     let currentP = document.createElement("p");
-//     let currentP2 = document.createElement("p");
-
-//     currentCard.classList.add("card");
-
-
-//     currentH3.innerText = park.LocationName;
-//     currentH5.innerText = `${park.Address}\n${park.City}, ${park.State} ${park.ZipCode}`;
-//     currentP.innerText = `Phone: ${park.Phone}\nFax: ${park.Fax}`;
-//     currentP2.innerText = `(${park.Latitude},${park.Longitude})`;
+    let currentH2 = document.createElement("h2");
+    let currentH3 = document.createElement("h3");
+    let currentP = document.createElement("p");
+    let deadlineH4 = document.createElement("h4");
+    let completedP = document.createElement("p");
 
 
+    currentCard.classList.add("card");
+    
+    currentH2.innerText = todo.category;
+    currentH3.innerText = `Priority: ${todo.priority}`;
+    currentP.innerText = todo.description;
+    deadlineH4.innerText = todo.deadline;
+    completedP.innerText = `Completed: ${todo.completed}`;
 
-//     currentCard.appendChild(currentH3);
-//     currentCard.appendChild(currentH5);
-//     currentCard.appendChild(currentP);
-//     currentCard.appendChild(currentP2);
+
+    currentCard.appendChild(currentH2);
+    currentCard.appendChild(currentH3);
+    currentCard.appendChild(currentP);
+    currentCard.appendChild(deadlineH4);
+    currentCard.appendChild(completedP);
 
 
-//     displayParksDiv.appendChild(currentCard);
-//   }
+    displayTodosDiv.appendChild(currentCard);
+  }
 
   //Function calls and wire-ups
   loadUsersSelect();

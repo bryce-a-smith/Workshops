@@ -1,25 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New To Do</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="todos.html">To Dos</a>
-        </nav>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="todos.html">To Dos</a>
+      </nav>
     </header>
     <main>
-        <h1>New To Do</h1>
-
+      <h1>New To Do</h1>
+      <fieldset>
+        <table>
+          <tr>
+            <td>
+              <label for="users-select">Select User:</label>
+            </td>
+            <td>
+              <select name="users-dropdown" id="users-select">
+                <option value="">Select...</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="category-select">Category:</label>
+            </td>
+            <td>
+              <select name="category-dropdown" id="category-select">
+                <option value="">Select...</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="urgency-select">Urgency:</label>
+            </td>
+            <td>
+              <select name="urgency-dropdown" id="urgency-select">
+                <option value="">Select...</option>
+                <option value="3">High</option>
+                <option value="2">Medium</option>
+                <option value="1">Low</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                Description:
+            </td>
+            <td>
+                <textarea name="description" id="description-textarea" cols="30" rows="10"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                Deadline(yyyy-mm-dd):
+            </td>
+            <td>
+                <input type="text" value="yyyy-mm-dd" id="date-text">
+            </td>
+          </tr>
+        </table>
+        <button type="button">Add To Do</button>
+      </fieldset>
     </main>
-    <footer>
-        
-    </footer>
+    <footer></footer>
     <script src="scripts/new_todos.js"></script>
-</body>
+  </body>
 </html>

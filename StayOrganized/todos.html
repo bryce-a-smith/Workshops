@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Dos</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="todos.html">To Dos</a>
-        </nav>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="todos.html">To Dos</a>
+      </nav>
     </header>
     <main>
-        <h1>To Dos</h1>
-        <a href="new_todo.html">Add To Do</a>
+      <h1>To Dos</h1>
+      <fieldset>
+        <div class="users-select">
+
+ 
         <label for="users-select">Select User:</label>
         <select name="users-dropdown" id="users-select">
-            <option value="">Select...</option>
+          <option value="">Select...</option>
         </select>
+       </div>
+        <a id="add-todo-a" href="new_todo.html">Add To Do</a>
+
         <div id="display">
-            <div class="form-col"></div>
-            <div id="display-todos-div"></div>
-          </div>
+          <div class="form-col"></div>
+          <div id="display-todos-div"></div>
+        </div>
+      </fieldset>
     </main>
-    <footer>
-        
-    </footer>
+
+    <footer></footer>
     <script src="scripts/todos.js"></script>
-</body>
+  </body>
 </html>
